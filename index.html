@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة وإطلاق الفعاليات العقارية | VIP Launch Manager</title>
+    <link rel="stylesheet" href="event-launch.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+
+    <div class="launch-app">
+        <aside class="launch-sidebar">
+            <div class="logo">
+                <i class="fa-solid fa-crown"></i>
+                <h2>VIP <span>LAUNCH</span></h2>
+            </div>
+            <nav class="launch-nav">
+                <button class="nav-btn active" data-tab="booking"><i class="fa-solid fa-ticket"></i> حجز دعوة جديدة</button>
+                <button class="nav-btn" data-tab="dashboard"><i class="fa-solid fa-chart-line"></i> لوحة متابعة الحضور</button>
+            </nav>
+            <div class="event-info-card">
+                <h4>حدث إطلاق: برج اللؤلؤة</h4>
+                <p><i class="fa-solid fa-location-dot"></i> فندق الماسه - العاصمة الإدارية</p>
+                <p><i class="fa-solid fa-calendar"></i> 25 أغسطس 2026</p>
+            </div>
+        </aside>
+
+        <main class="launch-content">
+            <!-- Tab 1: Booking Form & Ticket Gen -->
+            <section id="bookingTab" class="tab-content active">
+                <div class="form-card">
+                    <h3><i class="fa-solid fa-user-plus"></i> إصدار دعوة VIP رقمية</h3>
+                    <form id="inviteForm">
+                        <div class="form-group">
+                            <label>اسم العميل / الضيف</label>
+                            <input type="text" id="guestName" placeholder="أدخل الاسم الثلاثي" required>
+                        </div>
+                        <div class="form-group">
+                            <label>رقم الهاتف (الواتساب)</label>
+                            <input type="tel" id="guestPhone" placeholder="010XXXXXXXX" required>
+                        </div>
+                        <div class="form-group">
+                            <label>فئة الدعوة</label>
+                            <select id="guestTier">
+                                <option value="VVIP">VVIP - الجناح الملكي</option>
+                                <option value="VIP" selected>VIP - القاعة الرئيسية</option>
+                                <option value="Investor">كبار المستثمرين</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn-gold"><i class="fa-solid fa-qrcode"></i> إنشاء الدعوة وإصدار التذكرة</button>
+                    </form>
+                </div>
+
+                <!-- Generated Ticket Preview -->
+                <div class="ticket-wrapper hidden" id="ticketView">
+                    <div class="ticket-card">
+                        <div class="ticket-header">
+                            <i class="fa-solid fa-building-user"></i>
+                            <span>دعوة حصرية</span>
+                        </div>
+                        <div class="ticket-body">
+                            <h2 id="tGuestName">محمد العبدالله</h2>
+                            <p class="badge" id="tTier">VIP</p>
+                            <div class="ticket-details">
+                                <div><span>الكود:</span> <strong id="tCode">#9942</strong></div>
+                                <div><span>المقعد:</span> <strong>A-12</strong></div>
+                            </div>
+                        </div>
+                        <div class="ticket-qr" id="qrcode"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tab 2: Dashboard -->
+            <section id="dashboardTab" class="tab-content">
+                <div class="dash-metrics">
+                    <div class="metric-card"><span>إجمالي الدعوات</span><h3>150</h3></div>
+                    <div class="metric-card"><span>تأكيد الحضور</span><h3 id="confirmedCount">12</h3></div>
+                    <div class="metric-card"><span>المتواجدون حالياً</span><h3 id="checkedInCount">0</h3></div>
+                </div>
+                <div class="table-container">
+                    <h3>قائمة المدعوين الحية</h3>
+                    <table class="guest-table">
+                        <thead>
+                            <tr>
+                                <th>الكود</th>
+                                <th>الاسم</th>
+                                <th>الفئة</th>
+                                <th>الحالة</th>
+                                <th>إجراء</th>
+                            </tr>
+                        </thead>
+                        <tbody id="guestTableBody">
+                            <!-- Populated via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="event-launch.js"></script>
+</body>
+</html>
